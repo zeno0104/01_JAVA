@@ -41,20 +41,5 @@ public class VariableExample4 {
 
 		System.out.println("------------------------------");
 
-		/*
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * */
 	}
 }
