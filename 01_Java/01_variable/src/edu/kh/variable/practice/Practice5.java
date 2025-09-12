@@ -4,7 +4,8 @@ public class Practice5 {
 
 	public static void main(String[] args) {
 		char ch = 'A';
-		System.out.printf("문자:%c, 코드값:%d", ch, (int) ch);
+		int code = ch; // 자동형변환
+		System.out.printf("문자:%c, 코드값:%d\n", ch, code);
 	}
 
 }
