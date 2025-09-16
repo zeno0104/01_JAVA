@@ -17,6 +17,7 @@ public class _03_11659 {
 			arr[i] = sc.nextInt();
 		}
 		int[] sArr = new int[n + 1];
+
 		sArr[0] = 0;
 
 		for (int i = 0; i < n; i++) {

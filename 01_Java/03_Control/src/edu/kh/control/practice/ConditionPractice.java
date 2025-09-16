@@ -47,60 +47,21 @@ public class ConditionPractice {
 	}
 
 	public void practice3() {
-		// 1월: 31일
-		// 2월: 28일
-		// 3월: 31일
-		// 4월: 30일
-		// 5월: 31일
-		// 6월: 30일
-		// 7월: 31일
-		// 8월: 31일
-		// 9월: 30일
-		// 10월: 31일
-		// 11월: 30일
-		// 12월: 31일
-		System.out.println("1~12 사이의 정수 입력 : ");
-		int num = sc.nextInt();
 
-		switch (num) {
-		case 1:
-			System.out.println(num + "월은 31일까지 있습니다.");
+		System.out.println("1~12 사이의 정수 입력 : ");
+		int month = sc.nextInt();
+
+		switch (month) {
+		case 1, 3, 5, 7, 8, 10, 12:
+			System.out.println(month + "월은 31일까지 있습니다.");
+			break;
+		case 4, 6, 9, 11:
+			System.out.println(month + "월은 28일까지 있습니다.");
 			break;
 		case 2:
-			System.out.println(num + "월은 28일까지 있습니다.");
-			break;
-		case 3:
-			System.out.println(num + "월은 31일까지 있습니다.");
-			break;
-		case 4:
-			System.out.println(num + "월은 30일까지 있습니다.");
-			break;
-		case 5:
-			System.out.println(num + "월은 31일까지 있습니다.");
-			break;
-		case 6:
-			System.out.println(num + "월은 30일까지 있습니다.");
-			break;
-		case 7:
-			System.out.println(num + "월은 31일까지 있습니다.");
-			break;
-		case 8:
-			System.out.println(num + "월은 31일까지 있습니다.");
-			break;
-		case 9:
-			System.out.println(num + "월은 30일까지 있습니다.");
-			break;
-		case 10:
-			System.out.println(num + "월은 31일까지 있습니다.");
-			break;
-		case 11:
-			System.out.println(num + "월은 30일까지 있습니다.");
-			break;
-		case 12:
-			System.out.println(num + "월은 31일까지 있습니다.");
-			break;
+			System.out.println(month + "월은 28일까지 있습니다.");
 		default:
-			System.out.println(num + "월은 잘못 입력된 달입니다.");
+			System.out.println(month + "월은 잘못 입력된 달입니다.");
 		}
 
 	}
@@ -138,37 +99,55 @@ public class ConditionPractice {
 		double finalTerm = sc.nextDouble();
 
 		System.out.print("과제 점수 : ");
-		double exam = sc.nextDouble();
+		double report = sc.nextDouble();
 
 		System.out.print("출석 점수 : ");
-		int check = sc.nextInt();
+		int attendance = sc.nextInt();
 
 		double midScore = midTerm * 0.2;
 		double finalScore = finalTerm * 0.3;
-		double examScore = exam * 0.3;
-		double checkScore = (check) * 0.2 * 5;
+		double examScore = report * 0.3;
+		double checkScore = (attendance) * 0.2 * 5;
 
 		double total = midScore + finalScore + examScore + checkScore;
 
 		System.out.println("=================결과=================");
 
-		if (total >= 70) {
+		if (attendance <= 20 * 0.7) { // 출석횟수 부족으로 인한 낙제
+			System.out.printf("Fail [출석 횟수 부족] (%d/%d)", (int) attendance, 20);
+		} else { // 출석 만족 시
 			System.out.println("중간 고사 점수(20) : " + midScore);
 			System.out.println("기말 고사 점수(30) : " + finalScore);
 			System.out.println("과제 점수\t(30) : " + examScore);
 			System.out.println("출석 점수\t(20) : " + checkScore);
-			System.out.println("총점 : " + total);
-			System.out.println("PASS");
-		} else if (20 - (20 * 0.3) > check) {
-			System.out.printf("Fail [출석 횟수 부족 (%d/%d)]", check, 20);
-		} else {
-			System.out.println("중간 고사 점수(20) : " + midScore);
-			System.out.println("기말 고사 점수(30) : " + finalScore);
-			System.out.println("과제 점수\t(30) : " + examScore);
-			System.out.println("출석 점수\t(20) : " + checkScore);
-			System.out.println("총점 : " + total);
-			System.out.println("Fail [점수 미달]");
+
+			double sum = midScore + finalScore + examScore + checkScore;
+			System.out.printf("총점 : %.1f\n", sum);
+
+			if (sum >= 70) {
+				System.out.println("PASS");
+			} else {
+				System.out.println("Fail [점수미달]");
+			}
 		}
+
+//		if (total >= 70) {
+//			System.out.println("중간 고사 점수(20) : " + midScore);
+//			System.out.println("기말 고사 점수(30) : " + finalScore);
+//			System.out.println("과제 점수\t(30) : " + examScore);
+//			System.out.println("출석 점수\t(20) : " + checkScore);
+//			System.out.println("총점 : " + total);
+//			System.out.println("PASS");
+//		} else if (20 - (20 * 0.3) > attendance) {
+//			System.out.printf("Fail [출석 횟수 부족 (%d/%d)]", attendance, 20);
+//		} else {
+//			System.out.println("중간 고사 점수(20) : " + midScore);
+//			System.out.println("기말 고사 점수(30) : " + finalScore);
+//			System.out.println("과제 점수\t(30) : " + examScore);
+//			System.out.println("출석 점수\t(20) : " + checkScore);
+//			System.out.println("총점 : " + total);
+//			System.out.println("Fail [점수 미달]");
+//		}
 
 	}
 }
