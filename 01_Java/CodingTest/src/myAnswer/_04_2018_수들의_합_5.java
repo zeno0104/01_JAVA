@@ -19,25 +19,24 @@ public class _04_2018_수들의_합_5 {
 		int answer = 0;
 
 		while (true) {
-			System.out.printf("start = %d, end = %d ", start, end);
 			if (start == num)
 				break;
 			sum += arr[end];
 
 			if (sum == num) {
-				sum -= arr[start];
+				sum = 0;
 				start++;
+				end = start;
 				answer++;
 			} else if (sum < num) {
 				end++;
 			} else if (sum > num) {
-				sum -= arr[start];
+				sum = 0;
 				start++;
+				end = start;
 			}
-			System.out.printf(" sum = %d, answer = %d\n ", sum, answer);
 
 		}
-		System.out.println();
 		System.out.println(answer);
 	}
 }
