@@ -120,60 +120,70 @@ public class PracticeService {
 	public void practice7() {
 		System.out.print("주민등록번호(-포함) : ");
 		String residentId = sc.next();
-		String result = "";
+		char[] arr = new char[residentId.length()];
+
 		for (int i = 0; i < residentId.length(); i++) {
 			if (i >= 8) {
-				result += "*";
+				arr[i] = '*';
 			} else {
-				result += residentId.charAt(i);
+				arr[i] = residentId.charAt(i);
 			}
 		}
-		System.out.println(result);
+
+		for (char c : arr) {
+			System.out.print(c);
+		}
 
 	}
 
 	public void practice8() {
 		boolean flag = false;
 		int num = 0;
+
 		while (!flag) {
 			System.out.print("정수 : ");
 			num = sc.nextInt();
+
 			if (num % 2 == 0 || num < 3) {
-				System.out.println("다시 입력하세요.");
-				continue;
+				System.out.println("다시 입력하세요!");
 			} else {
 				break;
 			}
 		}
-		
-		int[] arr = new int[num];
-		String result = "";
 
+		int[] arr = new int[num];
 		int curr = 1;
 
+		// curr이 전위 연산자로 쓰일 때는 0부터 해야함
 		for (int i = 0; i < arr.length; i++) {
-			if (i == arr.length - 1) {
-				result += curr--;
-			} else if (num / 2 <= i) {
-				result += curr-- + ", ";
+			if (num / 2 <= i) {
+				arr[i] = curr--;
 			} else {
-				result += curr++ + ", ";
+				arr[i] = curr++;
 			}
 
 		}
-		System.out.println(result);
+
+		for (int i = 0; i < arr.length; i++) {
+			if (i == arr.length - 1) {
+				System.out.print(arr[i]);
+			} else {
+				System.out.print(arr[i] + ", ");
+			}
+		}
 	}
 
 	public void practice9() {
 		int[] arr = new int[10];
 		String result = "";
 		for (int i = 0; i < arr.length; i++) {
-			arr[i] = (int) (Math.random() * 10 + 1);	
+			arr[i] = (int) (Math.random() * 10 + 1);
 		}
-		for(int num : arr) {
+
+		for (int num : arr) {
 			result += num + " ";
 		}
-		
+
 		System.out.println("발생한 난수 : " + result);
 	}
 
@@ -181,15 +191,12 @@ public class PracticeService {
 		int[] arr = new int[10];
 		int min = 10;
 		int max = 1;
-		
-		String result = "";
+
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = (int) (Math.random() * 10 + 1);
 		}
-		
-		for(int num : arr) {
-			result += num + " ";
-			
+
+		for (int num : arr) {
 			if (min > num) {
 				min = num;
 			}
@@ -197,15 +204,17 @@ public class PracticeService {
 				max = num;
 			}
 		}
-		System.out.println("발생한 난수 : " + result);
-		System.out.println("최대값 : " + max);
+
+		for (int num : arr) {
+			System.out.print(num + " ");
+		}
+		System.out.println("\n최대값 : " + max);
 		System.out.println("최소값 : " + min);
 
 	}
 
 	public void practice11() {
 		int[] arr = new int[10];
-		String result = "";
 
 		for (int i = 0; i < arr.length; i++) {
 			int randomValue = (int) (Math.random() * 10 + 1);
@@ -219,14 +228,13 @@ public class PracticeService {
 			}
 		}
 		for (int i = 0; i < arr.length; i++) {
-			result += arr[i] + " ";
+			System.out.print(arr[i] + " ");
 		}
-		System.out.println(result);
 	}
 
 	public void practice12() {
 		int[] lotto = new int[6];
-		
+
 		for (int i = 0; i < lotto.length; i++) {
 			int randomValue = (int) (Math.random() * 45 + 1);
 			lotto[i] = randomValue;
@@ -239,11 +247,9 @@ public class PracticeService {
 			}
 		}
 		Arrays.sort(lotto);
-		String result = "";
 		for (int i = 0; i < lotto.length; i++) {
-			result += lotto[i] + " ";
+			System.out.print(lotto[i] + " ");
 		}
-		System.out.println(result);
 	}
 
 	public void practice13() {
@@ -259,11 +265,10 @@ public class PracticeService {
 			ch[i] = str.charAt(i);
 		}
 
-
 		char[] filteredResult = new char[str.length()];
 
 		int curr = 0;
-		
+
 		for (int i = 0; i < str.length(); i++) {
 			boolean flag = false;
 			for (int j = 0; j < i; j++) {
@@ -278,11 +283,11 @@ public class PracticeService {
 				curr++;
 			}
 		}
-		
+
 		char[] trimmed = Arrays.copyOf(filteredResult, curr);
-		
-		for(int i = 0; i < trimmed.length; i++) {
-			if(i == trimmed.length - 1) {
+
+		for (int i = 0; i < trimmed.length; i++) {
+			if (i == trimmed.length - 1) {
 				result += trimmed[i];
 			} else {
 				result += trimmed[i] + ", ";
@@ -296,46 +301,51 @@ public class PracticeService {
 	public void practice14() {
 		System.out.print("배열의 크기를 입력하세요 : ");
 		int size = sc.nextInt();
+		// nextInt -> \n가 입력 버퍼에 남음
+		// \n는 입력버퍼에서 제거하는 것은 nextLine()을 해줘야함
 		sc.nextLine();
-		
+
 		String[] arr = new String[size];
-		
-		for(int i = 0; i < arr.length; i++) {
+
+		for (int i = 0; i < arr.length; i++) {
 			System.out.print((i + 1) + "번째 문자열 : ");
 			arr[i] = sc.nextLine();
 		}
-		
-		while(true) {
+
+		while (true) {
 			System.out.print("더 값을 입력하시겠습니까?(Y/N) : ");
 			String yesOrNo = sc.next();
-			
+
 			int newSize = 0;
 			// eualsIgnoreCase() : 대소문자 구분없이 비교
-			if(yesOrNo.equalsIgnoreCase("Y")) {
+			if (yesOrNo.equalsIgnoreCase("Y")) {
 				System.out.print("더 입력하고 싶은 개수 : ");
 				newSize = sc.nextInt();
-				sc.nextLine();
-			} else if(yesOrNo.equalsIgnoreCase("N")){
+				sc.nextLine(); // 입력버퍼에 남은 개행문자 제거
+			} else if (yesOrNo.equalsIgnoreCase("N")) {
 				break;
 			} else {
 				System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 				continue;
 			}
-			
+			// 기존 배열 크기 + 추가 입력 갯수 만큼의 배열 만들기
 			String[] newArr = new String[newSize + arr.length];
-			
-			for(int i = 0; i < arr.length;i++) {
-				newArr[i] = arr[i];
+			// null이 들어감 -> jvm이 넣어줌
+
+			for (int i = 0; i < newArr.length; i++) {
+				if (i < arr.length) {
+					newArr[i] = arr[i]; // 인덱스의 값이 기존 배열보다 작을 경우 깊은 복사
+				} else {
+					// 인덱스의 값이 기존 배열보다 클 경우 (새로운 값 입력받기)
+					System.out.print((i + 1) + "번째 문자열 : ");
+					newArr[i] = sc.nextLine();
+				}
+
 			}
-			
-			for(int i = arr.length; i < newArr.length; i++) {
-				System.out.print((i + 1) + "번째 문자열 : ");
-				newArr[i] = sc.nextLine();
-			}
-			
-			arr = Arrays.copyOf(newArr, newArr.length);
-			
- 		}
+			// 기존 배열 공간을 참조하던 변수 arr에
+			// 새로운 배열 공간의 주소를 가진 newArr대입(얕은 복사)
+			arr = newArr;
+		}
 		System.out.println(Arrays.toString(arr));
 	}
 }
