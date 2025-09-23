@@ -18,6 +18,23 @@ public class Student {
 	int v3 = 30; // (default) 같은 패키지내까지 가능
 	private int v4 = 40; // 해당 클래스 내부에서만 가능
 
+	// static 예약어
+	public static String schoolName = "KH고등학교";
+
+	// final 예약어
+	private final int TEMP1 = 100;
+
+	// getter만 만들어진 이유 :
+	// final 예약어가 붙은 상수 TEMP1은 재대입 불가하여
+	// setter를 굳이 만들어주지 않음.
+	public int getTEMP1() {
+		return TEMP1;
+	}
+
+//	public void setTEMP1(int TEMP1) {
+//		this.TEMP1 = TEMP1;
+//	}
+
 	// 2. 생성자
 	// 3. 메서드
 
