@@ -31,7 +31,6 @@ public class Run {
 		// JVM에 있는 가비지 컬렉터(GC)가 메모리를 참조하고 있지 않다고 판단하면 자동으로 정리해줌
 		// 즉, 처음 객체를 생성해서 값을 할당할 땐 new를 사용
 		// 이후에 값을 수정할 때는 setter를 사용
-		emp[0].setEmpNo(0);
 		emp[0].setEmpName("김말똥");
 		emp[0].setDept("영업부");
 		emp[0].setJob("팀장");
@@ -42,8 +41,6 @@ public class Run {
 		emp[0].setPhone("01055559999");
 		emp[0].setAddress("전라도 광주");
 	
-		emp[1].setEmpNo(1);
-		emp[1].setEmpName("홍길동");
 		emp[1].setDept("기획부");
 		emp[1].setJob("부장");
 		emp[1].setGender('M');
