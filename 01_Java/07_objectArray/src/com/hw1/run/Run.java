@@ -46,12 +46,9 @@ public class Run {
 		emp[1].setEmpName("홍길동");
 		emp[1].setDept("기획부");
 		emp[1].setJob("부장");
-		emp[1].setAge(19);
 		emp[1].setGender('M');
 		emp[1].setSalary(4000000);
 		emp[1].setBonusPoint(0.3);
-		emp[1].setPhone("01022223333");
-		emp[1].setAddress("서울 잠실");
 		
 		System.out.println(emp[0].information());
 		System.out.println(emp[1].information());
