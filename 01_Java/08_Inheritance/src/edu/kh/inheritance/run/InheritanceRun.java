@@ -6,6 +6,9 @@ public class InheritanceRun {
 	public static void main(String[] args) {
 		InheritanceService inheritanceService = new InheritanceService();
 
-		inheritanceService.ex1();
+//		inheritanceService.ex1();
+//		inheritanceService.ex2();
+//		inheritanceService.ex3();
+		
 	}
 }

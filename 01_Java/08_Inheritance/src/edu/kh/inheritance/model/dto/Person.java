@@ -14,13 +14,13 @@ public class Person /* extends Object */ {
 
 	// 기능(생성자/메서드)
 	public Person() {
-		// super(); 컴파일러가 자동으로 추가해준다.
+		// super(); 컴파일러가 자동으로 super()를 추가해준다.
 		// 부모 객체를 생성해준다.
 		// 왜 자식 클래스에서?
 	}
 
 	public Person(String name, int age, String nationality) {
-		super(); // Object() 기본생성자를 부른 것 -> 부모의 생성자
+		super(); 		// Object() 기본생성자를 부른 것 -> 부모의 기본생성자 호출
 		this.name = name;
 		this.age = age;
 		this.nationality = nationality;
