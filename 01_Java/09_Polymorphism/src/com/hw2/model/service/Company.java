@@ -14,7 +14,7 @@ public class Company implements ManagementSystem{
 	
 	@Override
 	public void addPerson(Person person) {
-		if(employeeCount == employees.length) {
+		if(person instanceof Employee &&  employeeCount == employees.length) {
 			System.out.println("인원이 모두 충원되었습니다.");
 			return;
 		} 

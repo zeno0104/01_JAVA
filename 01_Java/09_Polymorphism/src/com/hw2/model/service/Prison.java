@@ -15,7 +15,7 @@ public class Prison implements ManagementSystem{
 	
 	@Override
 	public void addPerson(Person person) {
-		if(prisonerCount == prisoners.length) {
+		if(person instanceof Prisoner && prisonerCount == prisoners.length) {
 			System.out.println("수감자가 모두 충원되었습니다.");
 			return;
 		} 
