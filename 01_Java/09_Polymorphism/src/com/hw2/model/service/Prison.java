@@ -34,7 +34,7 @@ public class Prison implements ManagementSystem{
 			if(prisoners[i].getId().equals(id)) {
 				System.out.println("수감자가 삭제되었습니다 - " + prisoners[i].getInfo());
 				prisoners[i] = null;
-				
+				prisonerCount--;
 			}
 		}
 	}

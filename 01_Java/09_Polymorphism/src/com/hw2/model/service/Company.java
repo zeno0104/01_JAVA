@@ -33,6 +33,7 @@ public class Company implements ManagementSystem{
 			if(employees[i].getId().equals(id)) {
 				System.out.println("직원이 삭제되었습니다 - " + employees[i].getInfo());
 				employees[i] = null;
+				employeeCount--;
 			}
 		}
 	}
