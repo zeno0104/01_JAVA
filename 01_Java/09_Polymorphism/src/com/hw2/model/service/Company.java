@@ -11,7 +11,6 @@ public class Company implements ManagementSystem{
 		employees = new Employee[size];
 		employeeCount = 0;
 	}
-	
 	@Override
 	public void addPerson(Person person) {
 		if(person instanceof Employee &&  employeeCount == employees.length) {
