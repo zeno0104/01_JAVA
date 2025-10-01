@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 import com.hw3.model.dto.Book;
 
-
 public class BookService extends Book {
 	private Scanner sc = new Scanner(System.in);
 	private List<Book> bookList = new ArrayList<Book>(); // 도서 관련 객체 배열
@@ -111,8 +110,8 @@ public class BookService extends Book {
 		System.out.println("======도서 조회======");
 
 		Collections.sort(bookList);
-		
-		for(Book book : bookList) {
+
+		for (Book book : bookList) {
 			System.out.println(book);
 		}
 	}
@@ -252,19 +251,16 @@ public class BookService extends Book {
 			return;
 		}
 		// 중복 체크
-		for(int i = 0; i < favoriteList.size(); i++) {
+		for (int i = 0; i < favoriteList.size(); i++) {
 			if (favoriteList.get(i).getBookNumber() == bookList.get(index).getBookNumber()) {
 				System.out.println("이미 즐겨찾기 목록에 존재합니다.");
 				return;
 			}
 		}
-		
-		if(flag) {
-			favoriteList.add(bookList.get(index));
-			System.out.println("즐겨찾기에 도서가 추가되었습니다.");
-		} 
-		
-		
+
+		favoriteList.add(bookList.get(index));
+		System.out.println("즐겨찾기에 도서가 추가되었습니다.");
+
 	}
 
 	/**
