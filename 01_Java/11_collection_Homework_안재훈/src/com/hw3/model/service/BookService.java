@@ -138,7 +138,7 @@ public class BookService extends Book {
 			}
 		}
 		if (!flag) {
-			System.out.println("수정할 도서가 존재하지 않습니다.");
+			System.out.println("일치하는 도서 번호가 없습니다.");
 			return;
 		}
 
@@ -146,7 +146,7 @@ public class BookService extends Book {
 		System.out.println("2. 도서 저자");
 		System.out.println("3. 도서 가격");
 		System.out.println("4. 도서 출판사");
-		System.out.println("0. 수정 완료");
+		System.out.println("0. 수정 종료");
 
 		System.out.print("어떤 정보를 수정하시겠습니까?");
 		selectNum = sc.nextInt();
@@ -158,14 +158,14 @@ public class BookService extends Book {
 			System.out.print("수정할 도서명을 입력하세요: ");
 			String name = sc.nextLine();
 			bookList.get(bookIndex).setTitle(name);
-			System.out.println("수정 완료");
+			System.out.println("도서명 수정 완료");
 			break;
 		case 2:
 			System.out.println("=====도서 저자 수정=====");
 			System.out.print("수정할 도서 저자를 입력하세요: ");
 			String author = sc.nextLine();
 			bookList.get(bookIndex).setAuthor(author);
-			System.out.println("수정 완료");
+			System.out.println("도서 저자 수정 완료");
 
 			break;
 		case 3:
@@ -174,7 +174,7 @@ public class BookService extends Book {
 			int price = sc.nextInt();
 			bookList.get(bookIndex).setPrice(price);
 			;
-			System.out.println("수정 완료");
+			System.out.println("도서 가격 수정 완료");
 			break;
 		case 4:
 			System.out.println("=====도서 출판사 수정=====");
@@ -182,10 +182,10 @@ public class BookService extends Book {
 			String publisher = sc.nextLine();
 			bookList.get(bookIndex).setPublisher(publisher);
 			;
-			System.out.println("수정 완료");
+			System.out.println("도서 출판사 수정 완료");
 			break;
 		case 0:
-			System.out.println("수정 종료");
+			System.out.println("종료합니다..");
 			break;
 		}
 	}
@@ -195,7 +195,7 @@ public class BookService extends Book {
 	 */
 	public void removeBook() {
 		System.out.println("=====도서 삭제=====");
-		System.out.print("삭제할 도서 번호 입력 : ");
+		System.out.print("삭제할 도서의 번호를 입력하세요 : ");
 		int bookNumber = sc.nextInt();
 
 		int index = 0;
@@ -218,9 +218,9 @@ public class BookService extends Book {
 
 		if (yesOrNo.equalsIgnoreCase("Y")) {
 			bookList.remove(index);
-			System.out.println("도서를 삭제했습니다.");
+			System.out.println("삭제가 완료되었습니다");
 		} else if (yesOrNo.equalsIgnoreCase("N")) {
-			System.out.println("도서를 삭제하지 않습니다.");
+			System.out.println("삭제를 진행하지 않습니다");
 		} else {
 			System.out.println("잘못 입력하셨습니다.");
 		}
@@ -247,7 +247,7 @@ public class BookService extends Book {
 			}
 		}
 		if (!flag) {
-			System.out.println("도서 번호가 존재하지 않습니다.");
+			System.out.println("해당 번호의 도서가 존재하지 않습니다.");
 			return;
 		}
 		// 중복 체크
@@ -259,7 +259,7 @@ public class BookService extends Book {
 		}
 
 		favoriteList.add(bookList.get(index));
-		System.out.println("즐겨찾기에 도서가 추가되었습니다.");
+		System.out.println(number + "번 도서가 즐겨찾기에 추가 되었습니다");
 
 	}
 
@@ -282,7 +282,7 @@ public class BookService extends Book {
 			}
 		}
 		if (!flag) {
-			System.out.println("도서가 존재하지 않습니다.");
+			System.out.println("해당 번호의 도서가 존재하지 않습니다.");
 			return;
 		}
 
@@ -291,7 +291,7 @@ public class BookService extends Book {
 
 		if (yesOrNo.equalsIgnoreCase("Y")) {
 			favoriteList.remove(index);
-			System.out.println("도서를 삭제했습니다.");
+			System.out.println(bookNumber + "번 도서가 삭제되었습니다.");
 		}
 	}
 
@@ -299,6 +299,10 @@ public class BookService extends Book {
 	 * 7. 즐겨찾기 조회
 	 */
 	public void searchFavoriteBook() {
+		if(favoriteList.size() == 0) {
+			System.out.println("등록된 도서가 없습니다. 도서를 등록해주세요!");
+			return;
+		}
 		System.out.println("======즐겨찾기 조회======");
 		Collections.sort(favoriteList);
 		for (Book favoriteBook : favoriteList) {
@@ -310,12 +314,11 @@ public class BookService extends Book {
 	 * 8. 도서 추천
 	 */
 	public void recommendBook() {
-		System.out.println("======즐겨찾기 도서 목록 추천======");
 		int recommendBookNumber = (int) (Math.random() * favoriteList.size());
 		if (favoriteList.size() == 0) {
 			System.out.println("즐겨찾기에 등록된 도서가 존재하지 않습니다.");
 			return;
 		}
-		System.out.println(favoriteList.get(recommendBookNumber));
+		System.out.println(favoriteList.get(recommendBookNumber).getTitle());
 	}
 }
