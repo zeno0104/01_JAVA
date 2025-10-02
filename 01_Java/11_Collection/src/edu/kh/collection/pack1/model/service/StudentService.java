@@ -47,7 +47,7 @@ public class StudentService {
 		studentList.add(new Student("이수지", 20, "경기도 안산", 'F', 100));
 		studentList.add(new Student("강하늘", 25, "서울시 강남구", 'M', 80));
 		studentList.add(new Student("오미나", 24, "충북 청주시", 'F', 90));
-		studentList.add(new Student(" 박주희", 24, "서울시 서대문구", 'F', 70));
+		studentList.add(new Student("박주희", 24, "서울시 서대문구", 'F', 70));
 	}
 
 	public void ex() { // List 테스트용 메서드
@@ -117,7 +117,7 @@ public class StudentService {
 					sortByAge();
 					break;
 				case 8: /* sortByName(); */
-					sortByName(); 
+					sortByName();
 					break;
 				case 0:
 					System.out.println("프로그램 종료...");
@@ -380,15 +380,15 @@ public class StudentService {
 		boolean flag = true;
 
 		// 향상된 for문
-		
+
 		for (Student std : studentList) {
 			// 순서 유의!!!!
-				//		대상			검색할 대상
+			// 대상 검색할 대상
 			// boolean String.contains(문자열)
 			// String에 문자열이 포함되어 있으면 true, 아니면 false
 			if (std.getName().contains(input)) {
 				// std.getNAme()에 input이 포함되어 있느냐?
-				
+
 				System.out.println(std);
 				flag = false;
 			}
@@ -397,83 +397,64 @@ public class StudentService {
 			System.out.println("검색 결과가 없습니다.");
 		}
 	}
-	/* List를 정렬하는 방법
-	*
-	* 방법 1: Comparable 인터페이스 상속받아 compareTo() 메서드 재정의
-	* Student에 Comparable 인터페이스를 상속받아
-	* 오버라이딩한 compareTo()에 정의한 대로 정렬됨 (나이 오름차순, 내림차순..)
-	*
-	* 방법 2: Comparator 클래스에 의한 정렬 compare() 사용 (익명 내부 클래스 이용)
-	*
-	* 익명 내부 클래스란?
-	* 이름이 없는 클래스를 즉석에서 선언해서 한 번만 사용할 목적으로
-	* 작성 객체를 생성하면서 바로 구현 내용을 정의할 수 있음
-	*
-	* <익명 내부클래스 장점>
-	* 코드 간결화(별도로 클래스를 만들지 않아도 될 때 사용)
-	* 즉시 사용(한 번만 사용할 Comparator 등을 정의할 때 유용함)
-	* 지역화(특정 메서드 안에서만 필요할 때)
-	*/
-	
+	/*
+	 * List를 정렬하는 방법
+	 *
+	 * 방법 1: Comparable 인터페이스 상속받아 compareTo() 메서드 재정의 Student에 Comparable 인터페이스를
+	 * 상속받아 오버라이딩한 compareTo()에 정의한 대로 정렬됨 (나이 오름차순, 내림차순..)
+	 *
+	 * 방법 2: Comparator 클래스에 의한 정렬 compare() 사용 (익명 내부 클래스 이용)
+	 *
+	 * 익명 내부 클래스란? 이름이 없는 클래스를 즉석에서 선언해서 한 번만 사용할 목적으로 작성 객체를 생성하면서 바로 구현 내용을 정의할 수
+	 * 있음
+	 *
+	 * <익명 내부클래스 장점> 코드 간결화(별도로 클래스를 만들지 않아도 될 때 사용) 즉시 사용(한 번만 사용할 Comparator 등을
+	 * 정의할 때 유용함) 지역화(특정 메서드 안에서만 필요할 때)
+	 */
+
 	/**
 	 * 7. 나이에 따라 오름차순 정렬(Comparable 인터페이스 사용)
 	 * 
 	 */
 	public void sortByAge() {
 		Collections.sort(studentList);
-		for(Student std : studentList) {
+		
+		for (Student std : studentList) {
 			System.out.println(std);
 		}
 	}
-	
+
 	/**
 	 * 8. 이름으로 정렬 (가나다순)
 	 * 
 	 * 
 	 */
-	public void sortByName() {
-		Collections.sort(studentList, new Comparator<Student>() {
-			// 익명 클래스
-			// Comparator는 인터페이스, 근데 객체 생성을 하고 있음
-			// 
-			@Override
-			public int compare(Student o1, Student o2) {
-				// 이름 비교
-				// name은 String 형이라 compareTo()로 비교
-				// String.compareTo(); : 자바에서 객체를 비교하는 메소드.
-				// String이 Comparable을 상속받아 재정의해둔 
-				// compareTo() 메서드를 이용하는 것
-				// -> 두 객체를 비교하고 문자열의 순서 결정함.
-				return o1.getName().compareTo(o2.getName());
-			}
-			
+	private void sortByName() {
+
+		
+		
+//		Collections.sort(studentList, new Comparator<Student>() {
+//			@Override
+//			public int compare(Student o1, Student o2) {
+//				// 이름 비교
+//				// name은 String 형이라 compareTo()로 비교
+//				// String.compareTo() : 자바에서 객체를 비교하는 메소드.
+//				// (String이 Comparable을 상속받아 재정의해둔
+//				// compareTo() 메서드를 이용하는 것)
+//				// -> 두 객체를 비교하고 문자열의 순서 결정함.
+//				return o1.getName().compareTo(o2.getName());
+//			}
+//
+//		});
+		// 람다식으로 대체 가능!
+		Collections.sort(studentList, (a, b)->{
+			return a.getName().compareTo(b.getName());
 		});
-		for(Student std : studentList) {
+
+		for (Student std : studentList) {
 			System.out.println(std);
 		}
+
 	}
-	
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

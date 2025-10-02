@@ -2,7 +2,6 @@ package com.hw3.model.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -77,7 +76,7 @@ public class BookService extends Book {
 	}
 
 	/**
-	 * 2. 도서 등록
+	 * 1. 도서 등록
 	 */
 	public void addBook() {
 		System.out.println("======도서 등록======");
@@ -121,10 +120,10 @@ public class BookService extends Book {
 	 * 
 	 */
 	public void editBook() {
+		searchBook();
 		int selectNum = 0;
 
 		boolean flag = false;
-
 		System.out.println("========도서 수정========");
 		System.out.print("수정할 도서 번호를 입력하세요:");
 		int bookNum = sc.nextInt();
@@ -141,53 +140,58 @@ public class BookService extends Book {
 			System.out.println("일치하는 도서 번호가 없습니다.");
 			return;
 		}
+		while(true) {
+			System.out.println("1. 도서명");
+			System.out.println("2. 도서 저자");
+			System.out.println("3. 도서 가격");
+			System.out.println("4. 도서 출판사");
+			System.out.println("0. 수정 종료");
 
-		System.out.println("1. 도서명");
-		System.out.println("2. 도서 저자");
-		System.out.println("3. 도서 가격");
-		System.out.println("4. 도서 출판사");
-		System.out.println("0. 수정 종료");
+			System.out.print("어떤 정보를 수정하시겠습니까?");
+			selectNum = sc.nextInt();
+			sc.nextLine();
+			if(selectNum == 0) {
+				System.out.println("종료합니다...");
+				break;
+			}
 
-		System.out.print("어떤 정보를 수정하시겠습니까?");
-		selectNum = sc.nextInt();
-		sc.nextLine();
+			switch (selectNum) {
+			case 1:
+				System.out.println("=====도서명 수정=====");
+				System.out.print("수정할 도서명을 입력하세요: ");
+				String name = sc.nextLine();
+				bookList.get(bookIndex).setTitle(name);
+				System.out.println("도서명 수정 완료");
+				break;
+			case 2:
+				System.out.println("=====도서 저자 수정=====");
+				System.out.print("수정할 도서 저자를 입력하세요: ");
+				String author = sc.nextLine();
+				bookList.get(bookIndex).setAuthor(author);
+				System.out.println("도서 저자 수정 완료");
 
-		switch (selectNum) {
-		case 1:
-			System.out.println("=====도서명 수정=====");
-			System.out.print("수정할 도서명을 입력하세요: ");
-			String name = sc.nextLine();
-			bookList.get(bookIndex).setTitle(name);
-			System.out.println("도서명 수정 완료");
-			break;
-		case 2:
-			System.out.println("=====도서 저자 수정=====");
-			System.out.print("수정할 도서 저자를 입력하세요: ");
-			String author = sc.nextLine();
-			bookList.get(bookIndex).setAuthor(author);
-			System.out.println("도서 저자 수정 완료");
+				break;
+			case 3:
+				System.out.println("=====도서 가격 수정=====");
+				System.out.print("수정할 도서 가격을 입력하세요: ");
+				int price = sc.nextInt();
+				bookList.get(bookIndex).setPrice(price);
+				;
+				System.out.println("도서 가격 수정 완료");
+				break;
+			case 4:
+				System.out.println("=====도서 출판사 수정=====");
+				System.out.print("수정할 도서 출판사를 입력하세요: ");
+				String publisher = sc.nextLine();
+				bookList.get(bookIndex).setPublisher(publisher);
+				;
+				System.out.println("도서 출판사 수정 완료");
+				break;
+			default:
+				System.out.println("올바른 번호를 입력하세요.");
+			}
+		} 
 
-			break;
-		case 3:
-			System.out.println("=====도서 가격 수정=====");
-			System.out.print("수정할 도서 가격을 입력하세요: ");
-			int price = sc.nextInt();
-			bookList.get(bookIndex).setPrice(price);
-			;
-			System.out.println("도서 가격 수정 완료");
-			break;
-		case 4:
-			System.out.println("=====도서 출판사 수정=====");
-			System.out.print("수정할 도서 출판사를 입력하세요: ");
-			String publisher = sc.nextLine();
-			bookList.get(bookIndex).setPublisher(publisher);
-			;
-			System.out.println("도서 출판사 수정 완료");
-			break;
-		case 0:
-			System.out.println("종료합니다..");
-			break;
-		}
 	}
 
 	/**
@@ -299,7 +303,7 @@ public class BookService extends Book {
 	 * 7. 즐겨찾기 조회
 	 */
 	public void searchFavoriteBook() {
-		if(favoriteList.size() == 0) {
+		if (favoriteList.size() == 0) {
 			System.out.println("등록된 도서가 없습니다. 도서를 등록해주세요!");
 			return;
 		}
