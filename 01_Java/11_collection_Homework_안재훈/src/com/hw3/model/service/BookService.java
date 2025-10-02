@@ -151,7 +151,7 @@ public class BookService extends Book {
 			selectNum = sc.nextInt();
 			sc.nextLine();
 			if(selectNum == 0) {
-				System.out.println("종료합니다...");
+				System.out.println("모든 수정 완료...");
 				break;
 			}
 
@@ -191,6 +191,7 @@ public class BookService extends Book {
 				System.out.println("올바른 번호를 입력하세요.");
 			}
 		} 
+		
 
 	}
 
