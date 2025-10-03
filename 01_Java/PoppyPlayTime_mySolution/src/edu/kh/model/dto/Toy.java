@@ -72,16 +72,6 @@ public class Toy implements Comparable<Toy> {
 		this.ingredient = ingredient;
 	}
 
-	public void printIngredient(Set<String> ingredient) {
-		for (int i = 0; i < ingredient.size(); i++) {
-			if (i == ingredient.size() - 1) {
-				System.out.print(ingredient);
-			} else {
-				System.out.println(ingredient + ", ");
-			}
-		}
-	}
-
 	@Override
 	public String toString() {
 		String ingredientStr = String.join(", ", ingredient); // 문자열로 합치기 -> ,로
