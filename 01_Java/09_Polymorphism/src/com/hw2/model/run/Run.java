@@ -14,6 +14,7 @@ public class Run {
 		
 		company.addPerson(new Employee("EMP001", "유재석", "기획팀"));
 		company.addPerson(new Employee("EMP002", "정형돈", "개발팀"));
+		
 		company.displayAllPersons();
 		
 		System.out.println("======================================");
