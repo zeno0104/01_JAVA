@@ -1,9 +1,9 @@
-package edu.kh.model.dto;
+package kh.edu.model.dto;
 
 import java.util.Objects;
 import java.util.Set;
 
-public class Toy implements Comparable<Toy> {
+public class Toy implements Comparable<Toy>{
 	private String name;
 	private int age;
 	private int price;
@@ -73,14 +73,6 @@ public class Toy implements Comparable<Toy> {
 	}
 
 	@Override
-	public String toString() {
-		String ingredientStr = String.join(", ", ingredient); // 문자열로 합치기 -> ,로
-
-		return String.format(". 이름 : %s / 가격 : %d / 색상 : %s /" + " 사용가능연령 : %d / " + "제조년월일 : %d / 재료 : %s", name,
-				price, color, age, year, ingredientStr);
-	}
-
-	@Override
 	public int hashCode() {
 		return Objects.hash(age, color, ingredient, name, price, year);
 	}
@@ -99,13 +91,16 @@ public class Toy implements Comparable<Toy> {
 	}
 
 	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String joinedIngredient = String.join(", ", ingredient);
+		return String.format("이름 : %s / 가격 : %d / 색상 : %s / 사용가능연령 : %d / 제조년월일 : %d / 재료 : %s", name, price, color,
+				age, year, joinedIngredient);
+	}
+
+	@Override
 	public int compareTo(Toy o) {
 		// TODO Auto-generated method stub
 		return this.year - o.year;
 	}
-
-	public int compareTo(int index) {
-		return this.age - age;
-	}
-
 }
