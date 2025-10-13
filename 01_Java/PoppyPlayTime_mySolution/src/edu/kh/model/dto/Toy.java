@@ -104,7 +104,7 @@ public class Toy implements Comparable<Toy> {
 		return this.year - o.year;
 	}
 
-	public int compareTo(int index) {
+	public int compareTo(int age) {
 		return this.age - age;
 	}
 
