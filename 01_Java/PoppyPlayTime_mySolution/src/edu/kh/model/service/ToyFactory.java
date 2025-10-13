@@ -78,7 +78,7 @@ public class ToyFactory extends Toy {
 
 			switch (selectNum) {
 			case 1: /* viewAllToys() */
-				System.out.println(viewAllToys());
+				viewAllToys();
 				break;
 			case 2:/* createToy() */
 				createToy();
@@ -87,10 +87,10 @@ public class ToyFactory extends Toy {
 				System.out.println(deleteToy());
 				break;
 			case 4:/* viewToysByManufactureDate() */
-				System.out.println(viewToysByManufactureDate());;
+				viewToysByManufactureDate();
 				break;
 			case 5:/* viewToysByAgeGroup() */
-				System.out.println(viewToysByAgeGroup());;
+				viewToysByAgeGroup();
 				break;
 			case 6:/* addIngredient() */
 				System.out.println(addIngredient());
@@ -112,18 +112,14 @@ public class ToyFactory extends Toy {
 	/**
 	 * 1. 전체 장난감 조회하기
 	 */
-	public String viewAllToys() {
+	public void viewAllToys() {
 		System.out.println("<전체 장난감 목록>");
-		if(setToyList.size() == 0) {
-			return "장난감이 존재하지 않습니다.";
-		}
+
 		Iterator<Toy> it = setToyList.iterator();
 		int index = 1;
-		String result = "";
 		while (it.hasNext()) {
-			result += index++ + it.next().toString() + "\n";
+			System.out.println(index++ + it.next().toString());
 		}
-		return result;
 	}
 
 	/**
@@ -207,28 +203,20 @@ public class ToyFactory extends Toy {
 	/**
 	 * 4. 제조년월일 기준으로 오름차순 정렬
 	 */
-	public String viewToysByManufactureDate() {
-		if(setToyList.size() == 0) {
-			return "장난감이 존재하지 않습니다.";
-		}
+	public void viewToysByManufactureDate() {
 		List<Toy> list = new ArrayList<Toy>(setToyList);
 
 		Collections.sort(list);
 		int index = 1;
-		String result = "";
 		for (Toy toy : list) {
-			result += index++ + toy.toString() + "\n";
+			System.out.println(index++ + toy.toString());
 		}
-		return result;
 	}
 
 	/**
 	 * 5. 연령별 사용 가능한 장난감 리스트 조회하기
 	 */
-	public String viewToysByAgeGroup() {
-		if(setToyList.size() == 0) {
-			return "장난감이 존재하지 않습니다.";
-		}
+	public void viewToysByAgeGroup() {
 		Set<Integer> setAgeList = new LinkedHashSet<Integer>();
 		
 		for(Toy toy : setToyList) {
@@ -248,18 +236,17 @@ public class ToyFactory extends Toy {
 				return o2.getYear() - o1.getYear();
 			}
 		});
-		String result = "";
+		
 		for(int ageInfo : ageList) {
-			result += "[연령: " + ageInfo + "세]" + "\n";
+			System.out.printf("[연령: %d세]\n", ageInfo);
 			int index = 1;
 			
 			for(Toy toy : toyList) {
 				if(toy.getAge() == ageInfo) {
-					result += index++ + toy.toString() + "\n";
+					System.out.println(index++ + toy.toString());
 				}
 			}
 		}
-		return result;
 	}
 
 	/**
@@ -307,9 +294,6 @@ public class ToyFactory extends Toy {
 	 */
 	public String removeIngredient() {
 		System.out.println("<재료 삭제>");
-		if(mapIngredientList.size() == 0) {
-			return "등록된 재료가 없습니다.";
-		}
 		System.out.println("---현재 등록된 재료---");
 		printIngredient();
 		System.out.print("삭제할 재료명 입력: ");
