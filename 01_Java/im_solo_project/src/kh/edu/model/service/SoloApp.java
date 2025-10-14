@@ -2,12 +2,15 @@ package kh.edu.model.service;
 
 import java.util.*;
 
+import kh.edu.model.dto.DatePlan;
 import kh.edu.model.dto.Member;
 
 public class SoloApp extends Member {
 
 	private Scanner sc = new Scanner(System.in);
 	List<Member> memberList = new ArrayList<Member>();
+
+	Map<String, DatePlan> datePlanMap = new LinkedHashMap<>();
 
 	Map<String, Map<String, Integer>> pointList = new LinkedHashMap<String, Map<String, Integer>>();
 
@@ -84,6 +87,7 @@ public class SoloApp extends Member {
 				showAffectionScores();
 				break;
 			case 5:/* finalChoice() */
+				System.out.println(finalChoice());
 				break;
 			case 0:/**/
 				System.out.println("프로그램을 종료합니다..");
@@ -252,7 +256,36 @@ public class SoloApp extends Member {
 		}
 
 		plusPoint(myName, diffName, 2);
-		return "<데이트 신청 완료: " + myName + " -> " + diffName + " " + date + "+2점";
+		datePlanMap.put(myName, new DatePlan(myName, diffName, date));
+		System.out.println("<데이트 신청 완료: " + myName + " -> " + diffName + " " + date + " (+2점)");
+
+		int cnt = 0;
+		String result = "";
+		List<String> addApplicant = new ArrayList<>();
+
+		for (Map.Entry<String, DatePlan> dateInfo : datePlanMap.entrySet()) {
+			if (datePlanMap.get(dateInfo.getKey()).getDayInfo().equals(date)
+					&& datePlanMap.get(dateInfo.getKey()).getReceiver().equals(diffName)) {
+				cnt++;
+			}
+		}
+		int cnt2 = 0;
+
+		if (cnt > 1) {
+			for (Map.Entry<String, DatePlan> dateInfo : datePlanMap.entrySet()) {
+				if (cnt2 == 0) {
+					result += "💥 다대일 데이트네요! " + datePlanMap.get(dateInfo.getKey()).getDayInfo() + ", 대상: " + diffName
+							+ " <- 신청자: ";
+					addApplicant.add(datePlanMap.get(dateInfo.getKey()).getApplicant());
+					cnt2++;
+				} else {
+					addApplicant.add(datePlanMap.get(dateInfo.getKey()).getApplicant());
+				}
+
+			}
+			return result + String.join(", ", addApplicant);
+		}
+		return "";
 
 	}
 
@@ -261,7 +294,52 @@ public class SoloApp extends Member {
 	 */
 	public void showAffectionScores() {
 		for (Map.Entry<String, Map<String, Integer>> memberPointList : pointList.entrySet()) {
-			System.out.println(memberPointList.getKey() + " " + memberPointList.getValue());
+			System.out.println(memberPointList.getKey() + " -> ");
+			Map<String, Integer> selectedMap = memberPointList.getValue();
+
+			for (Map.Entry<String, Integer> entry : selectedMap.entrySet()) {
+				System.out.println(" " + entry.getKey() + "(" + entry.getValue() + "점)");
+			}
+		}
+	}
+
+	/**
+	 * 5. 마지막 선택
+	 */
+	public String finalChoice() {
+		System.out.print("내 이름: ");
+		String myName = sc.next();
+
+		System.out.println("상대 이름: ");
+		String diffName = sc.next();
+
+		int myPoint = 0;
+		int diffPoint = 0;
+
+		Map<String, Integer> myMap = pointList.get(myName);
+		Map<String, Integer> diffMap = pointList.get(diffName);
+
+		for (Map.Entry<String, Integer> map : myMap.entrySet()) {
+			if (map.getKey().equals(diffName)) {
+				myPoint = map.getValue();
+				break;
+			}
+		}
+		for (Map.Entry<String, Integer> map : diffMap.entrySet()) {
+			if (map.getKey().equals(myName)) {
+				diffPoint = map.getValue();
+				break;
+			}
+		}
+
+		if (myPoint < 5) {
+			return "X 선택 불가: " + myName + "->" + diffName + " 호감도는 " + myPoint + "점(5점미만)";
+		} else if (myPoint == 5 && diffPoint == 5) {
+			return "❤ 최종 커플 탄생: " + diffName + " ❤ " + myName;
+		} else if (myPoint >= 5 && diffPoint < 5) {
+			return "매칭 실패 : " + diffName + "에게 " + myName + "는 마음이 없네요..";
+		} else {
+			return "매칭 실패 : " + myName + "에게 " + diffName + "는 마음이 없네요..";
 		}
 	}
 }
