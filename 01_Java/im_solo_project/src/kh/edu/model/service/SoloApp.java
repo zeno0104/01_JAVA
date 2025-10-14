@@ -81,7 +81,7 @@ public class SoloApp extends Member {
 				voteFirstImpression();
 				break;
 			case 3:/* requestDate() */
-				System.out.println(requestDate());
+				requestDate();
 				break;
 			case 4:/* showAffectionScores() */
 				showAffectionScores();
@@ -211,14 +211,14 @@ public class SoloApp extends Member {
 	/**
 	 * 3. 데이트 신청
 	 */
-	public String requestDate() {
+	public void requestDate() {
 		System.out.print("내 이름: ");
 		String myName = sc.next();
 
 		boolean checkMyName = checkParticipant(myName);
 
 		if (!checkMyName) {
-			return "존재하지 않는 참가자입니다: " + myName;
+			System.out.println("존재하지 않는 참가자입니다: " + myName);
 		}
 
 		System.out.print("신청할 이성 이름: ");
@@ -227,10 +227,10 @@ public class SoloApp extends Member {
 		boolean checkDiffName = checkParticipant(myName);
 
 		if (!checkDiffName) {
-			return "존재하지 않는 참가자입니다: " + myName;
+			System.out.println("존재하지 않는 참가자입니다: " + myName);
 		}
 		if (myName.equals(diffName)) {
-			return "자기 자신에게는 신청할 수 없습니다.";
+			System.out.println("자기 자신에게는 신청할 수 없습니다.");
 		}
 		Member firstInfo = null;
 		Member secondInfo = null;
@@ -245,14 +245,14 @@ public class SoloApp extends Member {
 		}
 
 		if (firstInfo.getGender() == secondInfo.getGender()) {
-			return "데이트 신청은 이성에게만 가능합니다.";
+			System.out.println("데이트 신청은 이성에게만 가능합니다.");
 		}
 
 		System.out.print("날짜(YYYYMMDD): ");
 		String date = sc.next();
 
 		if (date.length() < 8 || date.length() > 8) {
-			return "날짜 형식이 올바르지 않습니다. 예: 20241013";
+			System.out.println("날짜 형식이 올바르지 않습니다. 예: 20241013");
 		}
 
 		plusPoint(myName, diffName, 2);
@@ -283,9 +283,8 @@ public class SoloApp extends Member {
 				}
 
 			}
-			return result + String.join(", ", addApplicant);
+			System.out.println(result + String.join(", ", addApplicant));
 		}
-		return "";
 
 	}
 
