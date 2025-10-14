@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="00_javaBasic/src"/>
+	<classpathentry kind="src" path="01_variable/src"/>
+	<classpathentry kind="src" path="02_Operator/src"/>
+	<classpathentry kind="src" path="03_Control/src"/>
+	<classpathentry kind="src" path="04_Array/src"/>
+	<classpathentry kind="src" path="05_Array2/src"/>
+	<classpathentry kind="src" path="06_OOP/src"/>
+	<classpathentry kind="src" path="07_objectArray/src"/>
+	<classpathentry kind="src" path="08_Inheritance/src"/>
+	<classpathentry kind="src" path="09_Polymorphism/src"/>
+	<classpathentry kind="src" path="10_Exception/src"/>
+	<classpathentry kind="src" path="11_collection_Homework_안재훈/src"/>
+	<classpathentry kind="src" path="11_Collection/src"/>
+	<classpathentry kind="src" path="im_solo_project/src"/>
+	<classpathentry kind="src" path="PoppyPlayTime_mySolution/src"/>
+	<classpathentry kind="output" path="00_javaBasic/bin"/>
+</classpath>
