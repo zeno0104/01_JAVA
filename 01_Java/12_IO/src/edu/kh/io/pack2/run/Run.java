@@ -50,7 +50,9 @@ public class Run {
 		 */
 		ByteService byteService = new ByteService();
 //		byteService.fileByteOutput();
-		byteService.bufferedFileByteoutPut();
-		
+//		byteService.bufferedFileByteoutPut();
+//		byteService.fileByteInput();
+//		byteService.bufferedFileByteInput();
+		byteService.fileCopy();
 	}
 }
