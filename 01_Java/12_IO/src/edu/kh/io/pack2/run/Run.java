@@ -49,10 +49,11 @@ public class Run {
 		 * System.out.println("===========================");
 		 */
 		ByteService byteService = new ByteService();
+		byteService.fileByteOutput();
 //		byteService.fileByteOutput();
 //		byteService.bufferedFileByteoutPut();
 //		byteService.fileByteInput();
 //		byteService.bufferedFileByteInput();
-		byteService.fileCopy();
+//		byteService.fileCopy();
 	}
 }
