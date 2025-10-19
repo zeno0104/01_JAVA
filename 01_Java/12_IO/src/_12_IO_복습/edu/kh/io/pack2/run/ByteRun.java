@@ -67,7 +67,8 @@ public class ByteRun {
 		ByteService byteService = new ByteService();
 		// byteService.fileByteOutPut();
 		// byteService.bufferedFileByteOutput();
-		byteService.fileByteInput();
+		// byteService.fileByteInput();
+		byteService.fileCopy();
 	}
 }
 

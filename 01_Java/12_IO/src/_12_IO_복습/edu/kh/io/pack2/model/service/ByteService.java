@@ -290,7 +290,30 @@ public class ByteService {
 			}
 		}
 	}
+	/** 파일 복사
+	 *
+	 * 파일 경로를 입력받아
+	 * 지정된 파일과 같은 경로에 복사된 파일 출력하기
+	 *
+	 * [실행화면]
+	 * 파일 경로 입력 : /io_test/20251014/노래가사.txt
+	 * 복사 완료 : /io_test/20251014/노래가사_copy.txt
+	 *
+	 * 1) 입력된 경로에 파일이 있는지 검사
+	 * 2) 있으면 파일 내용을 모두 읽어오기 : FileInputStream + BufferedInputStream
+	 * 3) 읽어온 내용을 같은 경로 위치에 "파일명_copy.확장자" 이름으로 출력
+	 *    : FileOutputStream + BufferedOutputStream
+	 *   
+	 * + Scanner 대신 BufferedReader(문자열 입력용 스트림) 이용
+	 * -> BufferedReader는 보조스트림으로 단독사용 불가능!
+	 * -> BufferedReader 생성 시 보조스트림인 InputStreamReader -> InputStream가 기반
+	 *
+	 */
 	
+
+	public void fileCopy() {
+		
+	}
 }
 
 
