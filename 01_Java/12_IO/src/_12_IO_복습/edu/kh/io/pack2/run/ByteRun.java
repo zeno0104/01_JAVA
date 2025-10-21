@@ -65,12 +65,13 @@ public class ByteRun {
 		// 안전하지 않으나, 단일스레드 환경에서 사용하기 적합
 
 		ByteService byteService = new ByteService();
-		// byteService.fileByteOutPut();
-		// byteService.bufferedFileByteOutput();
-		// byteService.fileByteInput();
-		byteService.fileCopy();
+		byteService.fileByteOutput1();
+//		byteService.fileByteOutPut();
+//		byteService.bufferedFileByteOutput();
+//		byteService.fileByteInput();
+//		byteService.fileCopy();
+		
+		// 바이트 기반 스트림은 1바이트만 지나갈 수 있는 통로 -> 한글 2바이트라서 다 깨짐, Input, Output
+		// -> 그래서 불편함이 있어서 문자 기반 스트림을 만듬 Reader, Writer
 	}
 }
-
-
-

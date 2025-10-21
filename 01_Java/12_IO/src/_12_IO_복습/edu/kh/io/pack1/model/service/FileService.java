@@ -65,8 +65,6 @@ public class FileService {
 	 *
 	 *
 	 * 2) 상대 경로 : 현재 위치를 기준으로 목표까지의 경로를 표기하는 방법
-	 *
-	 *
 	 * */
 	// C:/workspace/01_Java (절대경로)
 	// (workspace) <= 현재위치  /01_Java (상대경로)
@@ -76,6 +74,8 @@ public class FileService {
 	 * File 클래스로 객체 생성
 	 * + 폴더가 존재하지 않으면 원하는 경로에 폴더를 생성
 	 */
+	
+	/*
 	public void method1() {
 		// C:/io_test/20251014 폴더를 지정
 		// 제일 앞에 "/" 시작의 의미 : 현재 실행중인 프로젝트의 루트 디렉토리를 의미
@@ -111,9 +111,12 @@ public class FileService {
 		}
 		
 	}
+	*/
 	/**
 	 * File 객체를 이용해서 지정된 위치에 파일 생성하기
 	 */
+	
+	/*
 	public void method2() {
 		// 문자열에서 "\" 는 이스케이프 문자로 사용됨
 		// -> 역슬래시 자체를 문자로 사용하고 싶을 땐 2개를 사용
@@ -136,9 +139,12 @@ public class FileService {
 			}
 		}
 	}
+	*/
 	/**
 	 * File 클래스 제공 메서드 활용하기
 	 */
+	
+	/*
 	public void method3() {
 		File directory = new File("C:\\250101~\\KH_workspace\\KH_AJH_JAVA\\01_Java\\12_io");
 		// 지정된 경로에 있는 모든 파일/디렉토리를 File[] 형태로 얻어오기
@@ -179,9 +185,127 @@ public class FileService {
 		}
 		
 	}
+	*/
+	// 입력: 외부에서 내부로 값이 들어오는 것
+	// 출력: 내부에서 외부로 값이 나가는 것
 	
+	/**
+	 * File 클래스로 객체 생성
+	 * + 폴더가 존재하지 않으면 원하는 경로에 폴더를 생성
+	 */
+	public void method1() {
+		// C:/io_test/20251014 폴더를 지정
+		// 제일 앞에 "/" 시작의 의미 : 현재 실행중인 프로젝트의 루트 디렉토리
+		// (== 최상위 폴더 : root, 절대 경로의 기준점.)
+		// 즉, 드라이브를 의미함.
+		
+		// 절대경로 작성법 : 
+		// 명시적으로 맨앞에 C:, D: 라고 작성 시 해당 드라이브에 폴더 생성됨
+		// == 절대경로 작성법
+		
+		// 상대경로 작성법 : 
+		// io_test/20251014 작성 시 해당 프로젝트가 현재 위치!!
+		// 해당 프로젝트 안에 io_test/20251014 이 생성됨.
+		// 현재 프로젝트 : 12_io
+		//					ㄴ	io_test
+		//							ㄴ 20251014
+		File directory = new File("/io_test/20251014");
+		
+		if(!directory.exists()) {
+			directory.mkdirs();
+			System.out.println(directory.getName());
+			System.out.println(directory.getPath());
+		}
+	}
+	/**
+	 * File 객체를 이용해서 지정된 위치에 파일 생성하기
+	 */
+	public void method2() {
+		// 문자열에서 "\"는 이스케이프 문자로 사용됨
+		// -> 역슬래시 자체를 문자로 사용하고 싶을 땐 2개를 사용
+		// -> \\
+		File file = new File("\\io_test\\20251014\\파일생성.txt");
+		
+		
+		if(!file.exists()) { // 존재하지 않으면
+			// 파일 생성
+			
+			// File 클래스의 메서드는 대부분 IOException 발생시킴
+			// -> IOException는 반드시 예외처리를 해야하는 Checked Exception
+			// -> 예외 처리 필수!
+			try {
+				if(file.createNewFile()) { // true or false 리턴
+					System.out.println(file.getName() + " 파일이 생성됨.");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
+	/**
+	 * File 클래스 제공 메서드 활용하기
+	 */
+	public void method3() {
+		// File 객체 생성
+		File directory = new File("\\workspace\\01_JAVA\\01_Java\\12_IO");
+		// 대소문자 잘 맞춰줘야 함
+		
+		// 지정된 경로에 있는 모든 파일/디렉토리를 File[] 형태로 얻어오기
+		// 배열로 가져옴
+		File[] files = directory.listFiles();
+		
+		// 향상된 for문
+		for(File f : files) {
+			
+			// 파일명
+			String fileName = f.getName();
+			
+			// 마지막으로 수정한 날짜
+			long lastModified = f.lastModified();
+			
+			// java.text.SipleDateFormat : 간단히 날짜 형식을 지정할 수 있는 객체
+			// : 간단히 날짜 형식을 지정할 수 있는 객체
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd a h:mm");
+													// 2025-10-14 오후 12:30
+			// String SimpleDateFormat.format(long) : 
+			// 매개변수 long 값을 지정된 패턴 형식으로 변환하여
+			// 문자열 형태로 반환 메서드
+			
+			String date = sdf.format(lastModified);
+			
+			String type = null;
+			
+			// 파일 유형
+			if(f.isFile()) {
+				type = "파일";
+			}else {
+				type = "폴더";
+			}
+			
+			// 파일 크기
+			String size = f.length() + "B";
+			if(f.isDirectory()) {
+				size = ""; // 폴더라면 사이즈 빈문자열로 변경
+			}
+			// -> 폴더 크기를 구하는 메서드는 따로 존재하지 않음
+			// 구하려면 폴더안의 모든 파일을 순회하여 각 파일 크기 합산하여 사용
+			
+			String result = String.format("%-20s %-20s %-5s %10s", fileName, date, type, size);
+			System.out.println(result);
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
