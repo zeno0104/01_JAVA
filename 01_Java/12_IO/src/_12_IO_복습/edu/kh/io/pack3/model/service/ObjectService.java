@@ -3,6 +3,7 @@ package _12_IO_복습.edu.kh.io.pack3.model.service;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
 import _12_IO_복습.edu.kh.io.pack3.model.dto.Member;
@@ -60,7 +61,7 @@ public class ObjectService {
 				if(oos != null) 
 					oos.close();
 			} catch (Exception e2) {
-				// TODO: handle exception
+				e2.printStackTrace();
 			}
 		}
 	}
@@ -82,7 +83,7 @@ public class ObjectService {
 			
 			// Object ois.readObject() : 직렬화된 객체를 읽어와 역직렬화
 			// + Member 객체로 변경(다운캐스팅)
-			Member member = (Member)ois.readObject(); // Object이기 떄문에 다운캐스팅을 해준다.
+			Member member = (Member)ois.readObject(); // Object이기 때문에 다운캐스팅을 해준다.
 			System.out.println(member);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,6 +96,8 @@ public class ObjectService {
 			}
 		}
 	}
+	
+	
 }
 
 

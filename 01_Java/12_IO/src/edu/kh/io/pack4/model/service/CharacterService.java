@@ -8,12 +8,9 @@ import java.io.FileWriter;
 public class CharacterService {
 	/* 문자 기반 스트림
 	 * - 2byte 문자 단위로 입/출력 하는 스트림
-	 * 
 	 * - Reader (입력) / Writer (출력) 최상위 클래스
-	 * 
 	 * - 문자만 작성된 파일, 채팅, 인터넷 요청 시 데이터 전달
 	 * */
-	
 	/**
 	 * 문자 기반 파일 입력(파일 읽어오기)
 	 * + 보조 스트림 Buffered 사용
